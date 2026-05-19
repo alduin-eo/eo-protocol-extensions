@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol>
+    <enum name="TransactionAction" type="char">
+        <comment>Type of transaction — deposit or withdraw</comment>
+        <value name="Deposit">0</value>
+        <value name="Withdraw">1</value>
+    </enum>
+
+    <enum name="TransactionStatus" type="char">
+        <comment>Status of a transaction</comment>
+        <value name="Pending">0</value>
+        <value name="Approved">1</value>
+        <value name="Cancelled">2</value>
+    </enum>
+
+    <enum name="AlduinReply" type="char">
+        <comment>Server reply types and validation error codes</comment>
+        <value name="Wallet">1</value>
+        <value name="Notify">2</value>
+        <value name="AmountBelowMin">10</value>
+        <value name="AmountAboveMax">11</value>
+        <value name="InsufficientFunds">12</value>
+        <value name="InvalidWalletAddress">13</value>
+        <value name="TransactionNotFound">14</value>
+        <value name="TransactionNotPending">15</value>
+        <value name="NotYourTransaction">16</value>
+        <value name="AlreadyHasPending">17</value>
+    </enum>
+
+    <struct name="TransactionEntry">
+        <comment>A single transaction record in the history</comment>
+        <field name="id" type="int"/>
+        <field name="timestamp" type="int"/>
+        <field name="action" type="TransactionAction"/>
+        <field name="amount" type="int"/>
+        <field name="wallet_address" type="string"/>
+        <field name="status" type="TransactionStatus"/>
+    </struct>
+</protocol>

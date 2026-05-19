@@ -1,0 +1,23 @@
+<protocol>
+    <packet family="Alduin" action="Init">
+        <comment>Request wallet info (always) + optional history page. page=0 means wallet info only, page≥1 includes paginated history.</comment>
+        <field name="page" type="char"/>
+    </packet>
+
+    <packet family="Alduin" action="Add">
+        <comment>Request deposit of Alduin items. Amount selected via UI slider.</comment>
+        <field name="amount" type="int"/>
+        <field name="wallet_address" type="string"/>
+    </packet>
+
+    <packet family="Alduin" action="Remove">
+        <comment>Withdraw Alduin from wallet. Amount selected via UI slider.</comment>
+        <field name="amount" type="int"/>
+        <field name="wallet_address" type="string"/>
+    </packet>
+
+    <packet family="Alduin" action="Spec">
+        <comment>Cancel own pending transaction.</comment>
+        <field name="transaction_id" type="int"/>
+    </packet>
+</protocol>
