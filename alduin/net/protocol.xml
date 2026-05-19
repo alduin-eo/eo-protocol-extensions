@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol>
+    <enum name="TransactionAction" type="char">
+        <comment>Type of transaction — deposit or withdraw</comment>
+        <value name="Deposit">0</value>
+        <value name="Withdraw">1</value>
+    </enum>
+</protocol>
