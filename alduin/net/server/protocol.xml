@@ -33,25 +33,28 @@
 
     <packet family="Alduin" action="Reply">
         <comment>Unified reply with switch on reply value. Values ≥ 10 are validation errors with no switch case.</comment>
-        <field name="reply" type="AlduinReply"/>
-        <switch field="reply">
-            <case value="Wallet">
-                <field name="balance" type="int"/>
-                <field name="pending_count" type="char"/>
-                <field name="deposit_wallet" type="string"/>
-                <field name="deposit_min" type="int"/>
-                <field name="deposit_max" type="int"/>
-                <field name="withdraw_min" type="int"/>
-                <field name="withdraw_max" type="int"/>
-                <field name="page" type="char"/>
-                <field name="total_pages" type="char"/>
-                <array name="transactions" type="TransactionEntry"/>
-            </case>
-            <case value="Notify">
-                <field name="transaction_id" type="int"/>
-                <field name="status" type="TransactionStatus"/>
-                <field name="total_alduin" type="int"/>
-            </case>
-        </switch>
+        <chunked>
+            <field name="reply" type="AlduinReply"/>
+            <switch field="reply">
+                <case value="Wallet">
+                    <field name="balance" type="int"/>
+                    <field name="pending_count" type="char"/>
+                    <field name="deposit_wallet" type="string"/>
+                    <break/>
+                    <field name="deposit_min" type="int"/>
+                    <field name="deposit_max" type="int"/>
+                    <field name="withdraw_min" type="int"/>
+                    <field name="withdraw_max" type="int"/>
+                    <field name="page" type="char"/>
+                    <field name="total_pages" type="char"/>
+                    <array name="transactions" type="TransactionEntry"/>
+                </case>
+                <case value="Notify">
+                    <field name="transaction_id" type="int"/>
+                    <field name="status" type="TransactionStatus"/>
+                    <field name="total_alduin" type="int"/>
+                </case>
+            </switch>
+        </chunked>
     </packet>
 </protocol>
