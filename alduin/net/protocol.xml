@@ -5,4 +5,8 @@
         <value name="Deposit">0</value>
         <value name="Withdraw">1</value>
     </enum>
+
+    <enum name="PacketFamily" extend="append">
+        <value name="Alduin">247</value>
+    </enum>
 </protocol>
