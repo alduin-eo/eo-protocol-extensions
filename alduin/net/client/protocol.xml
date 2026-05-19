@@ -1,5 +1,5 @@
 <protocol>
-    <packet family="Alduin" action="Init">
+    <packet family="Alduin" action="Request">
         <comment>Request wallet info (always) + optional history page. page=0 means wallet info only, page≥1 includes paginated history.</comment>
         <field name="page" type="char"/>
     </packet>
