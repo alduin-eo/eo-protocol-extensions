@@ -7,6 +7,6 @@
     </enum>
 
     <enum name="PacketFamily" extend="append">
-        <value name="Alduin">247</value>
+        <value name="Alduin">55</value>
     </enum>
 </protocol>

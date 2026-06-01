@@ -8,17 +8,17 @@
     </enum>
 
     <enum name="AlduinReply" type="char">
-        <comment>Server reply types and validation error codes</comment>
+        <comment>Server reply types</comment>
         <value name="Wallet">1</value>
         <value name="Notify">2</value>
-        <value name="AmountBelowMin">10</value>
-        <value name="AmountAboveMax">11</value>
-        <value name="InsufficientFunds">12</value>
-        <value name="InvalidWalletAddress">13</value>
-        <value name="TransactionNotFound">14</value>
-        <value name="TransactionNotPending">15</value>
-        <value name="NotYourTransaction">16</value>
-        <value name="AlreadyHasPending">17</value>
+        <value name="AmountBelowMin">3</value>
+        <value name="AmountAboveMax">4</value>
+        <value name="InsufficientFunds">5</value>
+        <value name="InvalidWalletAddress">6</value>
+        <value name="TransactionNotFound">7</value>
+        <value name="TransactionNotPending">8</value>
+        <value name="NotYourTransaction">9</value>
+        <value name="AlreadyHasPending">10</value>
     </enum>
 
     <struct name="TransactionEntry">
@@ -32,13 +32,12 @@
     </struct>
 
     <packet family="Alduin" action="Reply">
-        <comment>Unified reply with switch on reply value. Values ≥ 10 are validation errors with no switch case.</comment>
+        <comment>Unified reply type for Alduin packets</comment>
         <chunked>
             <field name="reply" type="AlduinReply"/>
             <switch field="reply">
                 <case value="Wallet">
                     <field name="balance" type="int"/>
-                    <field name="pending_count" type="char"/>
                     <field name="deposit_wallet" type="string"/>
                     <break/>
                     <field name="deposit_min" type="int"/>
@@ -52,6 +51,7 @@
                 <case value="Notify">
                     <field name="transaction_id" type="int"/>
                     <field name="status" type="TransactionStatus"/>
+                    <field name="transaction_amount" type="int"/>
                     <field name="total_alduin" type="int"/>
                 </case>
             </switch>
