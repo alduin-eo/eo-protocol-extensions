@@ -23,12 +23,15 @@
 
     <struct name="TransactionEntry">
         <comment>A single transaction record in the history</comment>
-        <field name="id" type="int"/>
-        <field name="timestamp" type="int"/>
-        <field name="action" type="TransactionAction"/>
-        <field name="amount" type="int"/>
-        <field name="wallet_address" type="string"/>
-        <field name="status" type="TransactionStatus"/>
+        <chunked>
+          <field name="id" type="int"/>
+          <field name="timestamp" type="int"/>
+          <field name="action" type="TransactionAction"/>
+          <field name="amount" type="int"/>
+          <field name="wallet_address" type="string"/>
+          <break/>
+          <field name="status" type="TransactionStatus"/>
+        </chunked>
     </struct>
 
     <packet family="Alduin" action="Reply">
@@ -46,7 +49,7 @@
                     <field name="withdraw_max" type="int"/>
                     <field name="page" type="char"/>
                     <field name="total_pages" type="char"/>
-                    <array name="transactions" type="TransactionEntry"/>
+                    <array name="transactions" type="TransactionEntry" delimited="true"/>
                 </case>
                 <case value="Notify">
                     <field name="transaction_id" type="int"/>
